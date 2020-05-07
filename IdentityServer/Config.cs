@@ -4,6 +4,7 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
 using IdentityServer4;
 
 namespace IdentityServer
@@ -14,13 +15,13 @@ namespace IdentityServer
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Profile(), 
             };
 
         public static IEnumerable<ApiResource> Apis =>
             new[]
             {
-                new ApiResource("BlazorApp1.ServerAPI", "My Demo Api")
+                new ApiResource("BlazorApp1.ServerAPI", "My Demo Api", new []{ JwtClaimTypes.Name, JwtClaimTypes.Email })
             };
 
         public static IEnumerable<Client> Clients =>

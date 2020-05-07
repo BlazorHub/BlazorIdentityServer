@@ -29,6 +29,7 @@ namespace BlazorApp1.Server.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            var user = HttpContext.User;
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
