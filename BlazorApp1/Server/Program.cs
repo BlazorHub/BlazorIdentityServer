@@ -21,6 +21,7 @@ namespace BlazorApp1.Server
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }) 
+            ;
     }
 }

@@ -25,20 +25,34 @@ namespace BlazorApp1.Client
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorApp1.ServerAPI"));
 
             //builder.Services.AddApiAuthorization();
+            //builder.Services.AddOidcAuthentication(options =>
+            //{
+            //    options.ProviderOptions.Authority = "https://localhost:5001";
+            //    options.ProviderOptions.ClientId = "BlazorApp1.Client";
+            //    options.ProviderOptions.DefaultScopes.Add("BlazorApp1.ServerAPI");
+            //    options.ProviderOptions.RedirectUri = "https://localhost:44367/authentication/login-callback";
+            //    options.ProviderOptions.PostLogoutRedirectUri = "https://localhost:44367/authentication/logout-callback";
+            //    options.ProviderOptions.ResponseType = "code";
+
+            //    options.AuthenticationPaths.RemoteRegisterPath = "https://localhost:5001/Account/Register";
+            //    options.AuthenticationPaths.RemoteProfilePath = "https://localhost:5001/Account/Manage";
+            //});
+
             builder.Services.AddOidcAuthentication(options =>
             {
-                options.ProviderOptions.Authority = "https://localhost:5001";
-                options.ProviderOptions.ClientId = "BlazorApp1.Client";
-                options.ProviderOptions.DefaultScopes.Add("BlazorApp1.ServerAPI");
+                options.ProviderOptions.Authority = "https://localhost:44387";
+                options.ProviderOptions.ClientId = "AbpBlazorApp.Client";
+                options.ProviderOptions.DefaultScopes.Add("AbpBlazorApp.ServerAPI");
                 options.ProviderOptions.RedirectUri = "https://localhost:44367/authentication/login-callback";
                 options.ProviderOptions.PostLogoutRedirectUri = "https://localhost:44367/authentication/logout-callback";
-                options.ProviderOptions.ResponseType = "code";
-                
-                options.AuthenticationPaths.RemoteRegisterPath = "https://localhost:5001/Account/Register";
-                options.AuthenticationPaths.RemoteProfilePath = "https://localhost:5001/Account/Manage";
+                options.ProviderOptions.ResponseType = "id_token token";
+
+                options.AuthenticationPaths.RemoteRegisterPath = "https://localhost:44387/Account/Register";
+                options.AuthenticationPaths.RemoteProfilePath = "https://localhost:44387/Account/Manage";
             });
 
-        //https://localhost:44367/_configuration/BlazorApp1.Client
+
+            //https://localhost:44367/_configuration/BlazorApp1.Client
 
             await builder.Build().RunAsync();
         }

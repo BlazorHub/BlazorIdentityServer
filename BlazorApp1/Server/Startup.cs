@@ -18,6 +18,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BlazorApp1.Server
 {
+    //public class Startup
+    //{
+    //    public void ConfigureServices(IServiceCollection services)
+    //    {
+    //        services.AddApplication<BlazorWasmHostModule>();
+    //    }
+
+    //    public void Configure(IApplicationBuilder app)
+    //    {
+    //        app.InitializeApplication();
+    //    }
+    //}
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -66,12 +79,20 @@ namespace BlazorApp1.Server
             //services.AddAuthentication()
             //    .AddIdentityServerJwt();
 
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.Authority = "https://localhost:5001";
+            //        options.RequireHttpsMetadata = false;
+            //        options.Audience = "BlazorApp1.ServerAPI";
+            //    });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.Authority = "https://localhost:5001";
+                    options.Authority = "https://localhost:44387";
                     options.RequireHttpsMetadata = false;
-                    options.Audience = "BlazorApp1.ServerAPI";
+                    options.Audience = "AbpBlazorApp.ServerAPI";
                 });
 
             services.AddControllersWithViews();
